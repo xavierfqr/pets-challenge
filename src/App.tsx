@@ -1,7 +1,7 @@
 import React from 'react';
 import { AxiosResponse } from 'axios';
 import petsServices from './services/pets-services';
-import Pet from './components/Pet';
+import PetList from './components/PetList';
 import './App.css';
 
 function App() {
@@ -19,12 +19,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        {pets[0] ? 
-        <Pet created={pets[0].created}
-            description={pets[0].description}
-            title={pets[0].title}
-            url={pets[0].url}/> : null
-        }
+        <PetList pets={pets}/>
       </div>
       {console.log(pets)}
     </div>
