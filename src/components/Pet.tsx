@@ -1,6 +1,14 @@
 import React from 'react'
 import styled from 'styled-components';
 
+
+export type PetType = {
+    created: string,
+    description: string,
+    title: string,
+    url: string,
+}
+
 interface PetProps {
     created: string,
     description: string,
@@ -9,8 +17,11 @@ interface PetProps {
     index: number
 }
 
+interface ImageProps {
+    selected: boolean
+}
 
-const StyledImage = styled.img<any>`
+const StyledImage = styled.img<ImageProps>`
     width: 250px;
     height: 200px;
     opacity: ${p => p.selected ? 0.3 : 1};
@@ -39,7 +50,7 @@ const StyledPet = styled.div`
 
 
 function Pet({created, description, title, url, index} : PetProps) {
-    const [isSelected, setIsSelected] = React.useState(false)
+    const [isSelected, setIsSelected] = React.useState<boolean>(false)
     const formattedDate = new Date(created).toLocaleString();
     return (
         <StyledPet>

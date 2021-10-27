@@ -14,7 +14,6 @@ function PetList({pets} : any) {
                 <Pet key={index} {...pet} index={index}/>
             )}
         </StyledPets>
-
     )
 }
 
