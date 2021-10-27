@@ -6,6 +6,7 @@ import { createStore, applyMiddleware, Store, combineReducers, compose } from "r
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import petReducer from './reducers/reducer';
+import { BrowserRouter } from 'react-router-dom';
 
 
 const composeEnhancer = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -19,8 +20,10 @@ export type RootState = ReturnType<typeof rootReducer>
 const store: Store = createStore(rootReducer, composeEnhancer(applyMiddleware(thunk)));
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 );

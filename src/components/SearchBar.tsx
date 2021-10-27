@@ -2,7 +2,7 @@ import React from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import { RootState } from '..';
 import { downloadPetImage } from '../utils/DownloadImage';
-import { filterPets, downloadAllPets, removeAllPets, removeDownloadPet } from '../actions/actions';
+import { filterPets, downloadAllPets, removeAllPets } from '../actions/actions';
 
 function SearchBar() {
     const [option, setOption] = React.useState<string>("title");

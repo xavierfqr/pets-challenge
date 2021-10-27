@@ -1,4 +1,3 @@
-import { filterPets } from "../actions/actions";
 import { REMOVE_DOWNLOAD_PET, ADD_DOWNLOAD_PET, FETCH_PETS, FILTER_PETS, DOWNLOAD_ALL_PETS, REMOVE_ALL_PETS } from "../actions/actionTypes"
 
 interface IStore {
