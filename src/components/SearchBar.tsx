@@ -1,16 +1,13 @@
 import React from 'react'
-import { PetType } from './Pet';
-
 
 function SearchBar({setPets} : any) {
     const pets = JSON.parse(window.localStorage.getItem("petList") || "");
-    const [option, setOption] = React.useState<string>("title")
-    console.log(option);
+    const [option, setOption] = React.useState<string>("title");
     
     const handleSubmit = (event: any) => {
         event.preventDefault();
         const inputValue = event.target.search.value;
-        const filteredPets = (pets as Array<PetType>).filter((pet: any) => {
+        const filteredPets = pets.filter((pet: any) => {
             return pet[option].includes(inputValue);
         })
         setPets(filteredPets);
@@ -24,7 +21,7 @@ function SearchBar({setPets} : any) {
                 <option value="description">description</option>
             </select>
             <input type="text" name="search"/>
-            <button type="submit"/>
+            <button type="submit">search</button>
         </form>
     )
 }

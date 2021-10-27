@@ -1,21 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components';
+import { addPet, removePet } from '../actions/actions';
+import {useDispatch} from 'react-redux';
 
-
-export type PetType = {
-    created: string,
-    description: string,
-    title: string,
-    url: string,
-}
-
-interface PetProps {
-    created: string,
-    description: string,
-    title: string,
-    url: string,
-    index: number
-}
 
 interface ImageProps {
     selected: boolean
@@ -49,9 +36,25 @@ const StyledPet = styled.div`
 `;
 
 
-function Pet({created, description, title, url, index} : PetProps) {
-    const [isSelected, setIsSelected] = React.useState<boolean>(false)
+function Pet(props: IPet) {
+    const {created, description, title, url, id} = props;
+    const [isSelected, setIsSelected] = React.useState<boolean>(false);
+    const dispatch = useDispatch();
+    // avoid props dependency with useEffect
+    const propsRef = React.useRef(props);
+
+
+
     const formattedDate = new Date(created).toLocaleString();
+
+
+    useEffect(() => {
+        if (isSelected)
+            dispatch(addPet(propsRef.current));
+        else
+            dispatch(removePet(propsRef.current));
+    }, [isSelected])
+
     return (
         <StyledPet>
             <div>

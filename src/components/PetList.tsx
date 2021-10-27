@@ -10,8 +10,8 @@ const StyledPets = styled.div`
 function PetList({pets} : any) {
     return (
         <StyledPets>
-            {pets.map((pet : any, index : number) => 
-                <Pet key={index} {...pet} index={index}/>
+            {pets.map((pet: IPet) => 
+                <Pet key={pet.id} {...pet}/>
             )}
         </StyledPets>
     )
