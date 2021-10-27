@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components';
-import { addPet, removePet } from '../actions/actions';
+import { addDownloadPet, removeDownloadPet } from '../actions/actions';
 import {useDispatch} from 'react-redux';
 
 
@@ -36,23 +36,19 @@ const StyledPet = styled.div`
 
 
 function Pet(props: IPet) {
-    const {created, description, title, url, id} = props;
-    const [isSelected, setIsSelected] = React.useState<boolean>(false);
+    const {created, description, title, url, shouldDownload} = props;
     const dispatch = useDispatch();
     // avoid props dependency with useEffect
     const propsRef = React.useRef(props);
 
-
-
     const formattedDate = new Date(created).toLocaleString();
 
-
-    useEffect(() => {
-        if (isSelected)
-            dispatch(addPet(propsRef.current));
+    const handleSelectedPet = () => {
+        if (!shouldDownload)
+            dispatch(addDownloadPet(propsRef.current));
         else
-            dispatch(removePet(propsRef.current));
-    }, [isSelected])
+            dispatch(removeDownloadPet(propsRef.current));
+    }
 
     return (
         <StyledPet>
@@ -62,7 +58,7 @@ function Pet(props: IPet) {
                 <i>{formattedDate}</i>
             </div>
             <div>
-                <StyledImage src={url} selected={isSelected} onClick={() => setIsSelected(!isSelected)}/> 
+                <StyledImage src={url} selected={shouldDownload} onClick={() => handleSelectedPet()}/> 
             </div>
         </StyledPet>
     )

@@ -3,10 +3,9 @@ interface IPet {
     description: string,
     title: string,
     url: string,
-    id: number
+    id: number,
+    shouldDownload: boolean
 }
-
-type PetState = Array<IPet>;
 
 type PetAction = {
     type: string,

@@ -1,19 +1,18 @@
 import React from 'react'
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import { RootState } from '..';
 import { downloadPetImage } from '../utils/DownloadImage';
+import { filterPets, downloadAllPets, removeAllPets, removeDownloadPet } from '../actions/actions';
 
-function SearchBar({setPets} : any) {
-    const pets = JSON.parse(window.localStorage.getItem("petList") || "");
+function SearchBar() {
     const [option, setOption] = React.useState<string>("title");
-    const downloadPetList = useSelector((state: any) => state.petReducer);
+    const {pets, filteredPets} = useSelector((state: RootState) => state.petReducer);
+    const dispatch = useDispatch();
     
     const handleSubmit = (event: any) => {
         event.preventDefault();
         const inputValue = event.target.search.value;
-        const filteredPets = pets.filter((pet: any) => {
-            return pet[option].includes(inputValue);
-        })
-        setPets(filteredPets);
+        dispatch(filterPets(pets, option, inputValue))
         event.target.search.value = "";
     }
 
@@ -27,7 +26,9 @@ function SearchBar({setPets} : any) {
                 <input type="text" name="search"/>
                 <button type="submit">search</button>
             </form>
-            <button onClick={() => downloadPetImage(downloadPetList)}>download</button>
+            <button onClick={() => downloadPetImage(filteredPets)}>download</button>
+            <button onClick={() => dispatch(downloadAllPets())}>select all</button>
+            <button onClick={() => dispatch(removeAllPets())}>clear all</button>
         </div>
 
 

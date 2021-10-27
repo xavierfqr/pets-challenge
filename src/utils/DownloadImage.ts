@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export function downloadPetImage(downloadPets : IPet[]){
-    downloadPets.map(
+    downloadPets.filter(pet => pet.shouldDownload).forEach(
         pet => {
             axios.get(pet.url, {
                 responseType: "blob"
