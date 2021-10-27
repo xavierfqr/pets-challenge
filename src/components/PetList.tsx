@@ -11,15 +11,17 @@ const StyledPets = styled.div`
 
 function PetList() {
     const {isLoading, filteredPets} = useSelector((state: RootState) => state.petReducer);
-
+    console.log(isLoading)
     return (
-        <StyledPets>
-        {isLoading &&
-            filteredPets.map((pet: IPet) => 
-                <Pet key={pet.id} {...pet}/>
-            )
-        }
-        </StyledPets>
+        <div>
+            <StyledPets>
+                {!isLoading ?
+                    filteredPets.map((pet: IPet) => 
+                        <Pet key={pet.id} {...pet}/>
+                    ) : <div>Loading</div>
+                }
+            </StyledPets>
+        </div>
     )
 }
 

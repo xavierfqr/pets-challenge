@@ -14,7 +14,8 @@ const petReducer = (state: IStore = initalState, action: PetAction) : IStore => 
             return {
                 ...state,
                 pets: action.payload,
-                filteredPets: action.payload
+                filteredPets: action.payload,
+                isLoading: false
             }
         }
         case ADD_DOWNLOAD_PET: {

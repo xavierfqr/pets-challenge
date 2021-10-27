@@ -3,6 +3,20 @@ import {useDispatch, useSelector} from 'react-redux';
 import { RootState } from '..';
 import { downloadPetImage } from '../utils/DownloadImage';
 import { filterPets, downloadAllPets, removeAllPets } from '../actions/actions';
+import styled from 'styled-components';
+
+
+const DownloadIcon = styled.img`
+    position: fixed;
+    bottom: 5rem;
+    right: 7rem;
+    cursor: pointer;
+	border-radius: 100%;
+	box-shadow: 3px 3px 4px gray;
+    &:hover {
+        bottom: 5.2rem;
+    }
+`
 
 function SearchBar() {
     const [option, setOption] = React.useState<string>("title");
@@ -26,7 +40,8 @@ function SearchBar() {
                 <input type="text" name="search"/>
                 <button type="submit">search</button>
             </form>
-            <button onClick={() => downloadPetImage(filteredPets)}>download</button>
+
+            <DownloadIcon width={70} height={70} src="download.png" onClick={() => {downloadPetImage(filteredPets); dispatch(removeAllPets());}}/>
             <button onClick={() => dispatch(downloadAllPets())}>select all</button>
             <button onClick={() => dispatch(removeAllPets())}>clear all</button>
         </div>
