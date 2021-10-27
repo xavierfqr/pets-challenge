@@ -12,7 +12,6 @@ const StyledImage = styled.img<ImageProps>`
     width: 250px;
     height: 200px;
     opacity: ${p => p.selected ? 0.3 : 1};
-    filter:alpha(opacity=50);
     `;
 
 const StyledPet = styled.div`
