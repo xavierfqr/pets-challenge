@@ -20,7 +20,7 @@ const petReducer = (state: IStore = initalState, action: PetAction) : IStore => 
         }
         case ADD_DOWNLOAD_PET: {
             const petsCopy = [...state.filteredPets];
-            petsCopy[action.payload.id].shouldDownload = true;
+            petsCopy.find(pet => pet.id === action.payload.id)!.shouldDownload = true;
             return {
                 ...state, 
                 filteredPets: petsCopy
@@ -39,7 +39,7 @@ const petReducer = (state: IStore = initalState, action: PetAction) : IStore => 
         }
         case REMOVE_DOWNLOAD_PET: {
             const petsCopy = [...state.filteredPets];
-            petsCopy[action.payload].shouldDownload = false;
+            petsCopy.find(pet => pet.id === action.payload)!.shouldDownload = false;
             return {
                 ...state,
                 filteredPets: petsCopy
