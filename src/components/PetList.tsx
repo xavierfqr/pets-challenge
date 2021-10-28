@@ -5,13 +5,15 @@ import { useSelector } from 'react-redux';
 import { RootState } from '..';
 
 const StyledPets = styled.div`
-    display:flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-row: auto;
+    grid-template-columns: repeat(2, 1fr);
 `
 
 function PetList() {
     const {isLoading, filteredPets} = useSelector((state: RootState) => state.petReducer);
-    console.log(isLoading)
+
     return (
         <div>
             <StyledPets>

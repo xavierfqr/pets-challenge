@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export function downloadPetImage(downloadPets : IPet[]){
+export function downloadPetImages(downloadPets : IPet[]){
     downloadPets.filter(pet => pet.shouldDownload).forEach(
         pet => {
             axios.get(pet.url, {

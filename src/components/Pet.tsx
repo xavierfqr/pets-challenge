@@ -9,57 +9,47 @@ interface ImageProps {
 }
 
 const StyledImage = styled.img<ImageProps>`
-    width: 250px;
-    height: 200px;
+    width: 100%;
     opacity: ${p => p.selected ? 0.3 : 1};
     `;
 
 const StyledPet = styled.div`
-    display: flex;
-    flex-direction: row;
-    width:500px;
+    width: 400px;
+    box-shadow: 0 0 15px -5px;
     transition: all .2s linear;
-    & > div {
-        display: flex;
-        align-items:center;
-        justify-content: space-around;
-        background-color:beige ;
-        flex-direction: column;
-        i {
-            font-size: 0.8rem;
-        }
-    }
+    margin-bottom: 2rem;
     &:hover {
         transform: scale(1.1);
+        box-shadow: 0 0 15px 0px;
     }
-`;
-
+`
+const StyledBio = styled.div`
+    padding: 1rem;
+`
 
 function Pet(props: IPet) {
     const {created, description, title, url, shouldDownload} = props;
     const dispatch = useDispatch();
-    // avoid props dependency with useEffect
-    const propsRef = React.useRef(props);
 
     const formattedDate = new Date(created).toLocaleString();
 
     const handleSelectedPet = () => {
         if (!shouldDownload)
-            dispatch(addDownloadPet(propsRef.current));
+            dispatch(addDownloadPet(props));
         else
-            dispatch(removeDownloadPet(propsRef.current));
+            dispatch(removeDownloadPet(props));
     }
 
     return (
         <StyledPet>
             <div>
+                <StyledImage src={url} selected={shouldDownload} onClick={() => handleSelectedPet()}/> 
+            </div>
+            <StyledBio>
                 <p>{title}</p>
                 <div>{description}</div>
                 <i>{formattedDate}</i>
-            </div>
-            <div>
-                <StyledImage src={url} selected={shouldDownload} onClick={() => handleSelectedPet()}/> 
-            </div>
+            </StyledBio>  
         </StyledPet>
     )
 }

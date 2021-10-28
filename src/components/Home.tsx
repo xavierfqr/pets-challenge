@@ -3,6 +3,10 @@ import PetList from '../components/PetList';
 import SearchBar from '../components/SearchBar';
 import { useDispatch } from 'react-redux';
 import { fetchProducts } from '../actions/actions';
+import styled from 'styled-components';
+
+
+
 
 function Home() {
     const dispatch = useDispatch()
@@ -13,7 +17,7 @@ function Home() {
     //dispatch dependency to remove eslint warning...
   
     return (
-      <div className="App">
+      <div>
         <SearchBar/>
         <PetList/>
       </div>
