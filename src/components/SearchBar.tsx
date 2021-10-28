@@ -56,16 +56,16 @@ function SearchBar() {
     const dispatch = useDispatch();
     
     const handleSubmit = (event: any) => {
-        event.preventDefault();
-        const inputValue = event.target.search.value;
+        console.log(event);
+        const inputValue = event.target.value;
         dispatch(filterPets(pets, option.toLowerCase(), inputValue))
     }
 
     return (
         <StyledSearchBar>
-            <StyledForm onSubmit={(event) => handleSubmit(event)}>
+            <StyledForm onSubmit={(event) => event.preventDefault()}>
                 <img src="search.png" width={30} height={30}></img>
-                <StyledInput autoFocus type="text" name="search"/>
+                <StyledInput autoFocus type="text" name="search" onChange={(event) => handleSubmit(event)}/>
                 <StyledButton type="submit" invisible={true}></StyledButton>
                 <Dropdown>
                     <Dropdown.Toggle>
