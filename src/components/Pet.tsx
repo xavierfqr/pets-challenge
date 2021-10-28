@@ -17,6 +17,7 @@ const StyledPet = styled.div`
     width: 400px;
     box-shadow: 0 0 15px -5px;
     transition: all .2s linear;
+    margin: 1rem;
     margin-bottom: 2rem;
     &:hover {
         transform: scale(1.1);

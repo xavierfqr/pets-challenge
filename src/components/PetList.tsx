@@ -5,10 +5,12 @@ import { useSelector } from 'react-redux';
 import { RootState } from '..';
 
 const StyledPets = styled.div`
-    display: grid;
-    grid-auto-flow: row;
-    grid-template-row: auto;
-    grid-template-columns: repeat(2, 1fr);
+    display:flex;
+    flex-direction column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: 1100vh;
 `
 
 function PetList() {
@@ -20,7 +22,7 @@ function PetList() {
                 {!isLoading ?
                     filteredPets.map((pet: IPet) => 
                         <Pet key={pet.id} {...pet}/>
-                    ) : <div>Loading</div>
+                    ) : <div>Loading...</div>
                 }
             </StyledPets>
         </div>

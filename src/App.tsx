@@ -7,18 +7,19 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import styled from 'styled-components';
 
-const StyledAppDiv = styled.div`
-  background-color: #faf0e6;
-`
-
 const StyledMainDiv = styled.div`
   margin: auto;
   width: 80%;
 `
 
 function App() {
+
+  React.useEffect(() => {
+    document.body.style.backgroundColor = "#faf0e6"
+  }, [])
+
   return (
-    <StyledAppDiv>
+    <div>
       <Router>
         <Navbar/>
           <StyledMainDiv>
@@ -28,7 +29,7 @@ function App() {
             </Switch>
           </StyledMainDiv>
       </Router>
-    </StyledAppDiv>
+    </div>
   );
 }
 
