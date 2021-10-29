@@ -14,6 +14,7 @@ const StyledImage = styled.img<ImageProps>`
     `;
 
 const StyledPet = styled.div`
+    display:inline-block;
     width: 400px;
     box-shadow: 0 0 15px -5px;
     transition: all .2s linear;

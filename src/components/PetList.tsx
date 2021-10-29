@@ -5,12 +5,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '..';
 
 const StyledPets = styled.div`
-    display:flex;
-    flex-direction column;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-    height: 1100vh;
+    padding-top: 2rem;
+    column-count: 2;
 `
 
 function PetList() {
